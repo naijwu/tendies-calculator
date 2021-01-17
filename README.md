@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## About
 
-WSB-inspired options (call) profit calculator (via execution and sell). Live link: tendies-calculator.web.app
+Options (call) profit calculator (via execution and sell). Live link: tendies-calculator.web.app
 
 ## Available Scripts
 
