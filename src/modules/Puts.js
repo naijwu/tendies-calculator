@@ -116,7 +116,7 @@ function Puts() {
         </div>
         <div className='result'>
           <h4>🖨️: ${putProfit.toLocaleString()} </h4>
-          <h4>📈: {putIncrease.toFixed(2)}% (~{putBagger.toFixed(0)} 💰)</h4>
+          <h4>📈: {putIncrease.toFixed(2).toLocaleString()}% (~{putBagger.toFixed(0)} 💰)</h4>
           <h4>✋: {hands}</h4>
         </div>
       </div>

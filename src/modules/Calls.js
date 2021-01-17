@@ -116,7 +116,7 @@ function Calls() {
         </div>
         <div className='result'>
           <h4>🖨️: ${callProfit.toLocaleString()} </h4>
-          <h4>📈: {callIncrease.toFixed(2)}% (~{callBagger.toFixed(0)} 💰)</h4>
+          <h4>📈: {callIncrease.toFixed(2).toLocaleString()}% (~{callBagger.toFixed(0)} 💰)</h4>
           <h4>✋: {hands}</h4>
         </div>
       </div>
