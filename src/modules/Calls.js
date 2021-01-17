@@ -47,15 +47,15 @@ function Calls() {
     let profit = totalSharesToSell - totalStrikeCost - totalPremium;
     let positionIncrease = (profit / totalPremium) * 100;
     let bagger = positionIncrease / 100;
-
+    let bag = bagger ? bagger : 0;
 
     // this is just for fun lool
-    if (bagger < 2000) {
-      if (bagger < 1000) {
-        if (bagger < 500) {
-          if (bagger <= 100) {
-            if (bagger < 0.5) {
-              if (bagger < 0) {
+    if (bag < 2000) {
+      if (bag < 1000) {
+        if (bag < 500) {
+          if (bag < 100) {
+            if (bag < 0.5) {
+              if (bag < 0) {
                 // result of a gambling addiction
                 updateHands('🧻'); 
               } else {
@@ -78,7 +78,9 @@ function Calls() {
         // if bagging 2000-1000 (200,000~100,000% returns)
         updateHands('u/DFV');
       }
-    } 
+    } else {
+      updateHands('🌕');
+    }
 
     updateCallProfit(profit ? profit : 0);
     updateCallIncrease(positionIncrease ? positionIncrease : 0);
