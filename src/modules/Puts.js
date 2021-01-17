@@ -1,16 +1,16 @@
 import '../App.css';
 import React, { useState, useEffect } from 'react';
 
-function Calls() {
+function Puts() {
 
-  const [callStrike, updateCallStrike] = useState(0);
-  const [callProfit, updateCallProfit] = useState(0);
-  const [callIncrease, updateCallIncrease] = useState(0);
-  const [callBagger, updateCallBagger] = useState(0);
+  const [putStrike, updatePutStrike] = useState(0);
+  const [putProfit, updatePutProfit] = useState(0);
+  const [putIncrease, updatePutIncrease] = useState(0);
+  const [putBagger, updatePutBagger] = useState(0);
 
   const [moneyIn, updateMoneyIn] = useState(0);
   const [contractsNo, updateContractsNo] = useState(0);
-  const [sellAtPrice, updateSellAtPrice] = useState(0);
+  const [buyAtPrice, updateBuyAtPrice] = useState(0);
   const [optionsPremium, updateOptionsPremium] = useState(0);
 
   const [MIFocus, updateMIFocus] = useState(false);
@@ -35,16 +35,16 @@ function Calls() {
 
   useEffect(() => {
     let totalPremium = 0;
-    let totalStrikeCost = 0;
-    let totalSharesToSell = 0;
+    let totalSellOption = 0;
+    let totalBuyCost = 0;
 
     let numContracts = contractsNo ? contractsNo : (moneyIn / (optionsPremium * 100));
 
     totalPremium = optionsPremium * 100 * numContracts;
-    totalStrikeCost = callStrike * 100 * numContracts;
-    totalSharesToSell = sellAtPrice * 100 * numContracts;
+    totalSellOption = putStrike * 100 * numContracts;
+    totalBuyCost = buyAtPrice * 100 * numContracts;
 
-    let profit = totalSharesToSell - totalStrikeCost - totalPremium;
+    let profit = totalSellOption - totalBuyCost - totalPremium;
     let positionIncrease = (profit / totalPremium) * 100;
     let bagger = positionIncrease / 100;
 
@@ -80,24 +80,24 @@ function Calls() {
       }
     } 
 
-    updateCallProfit(profit ? profit : 0);
-    updateCallIncrease(positionIncrease ? positionIncrease : 0);
-    updateCallBagger(bagger ? bagger : 0);
-  }, [callStrike, sellAtPrice, optionsPremium, contractsNo, moneyIn])
+    updatePutProfit(profit ? profit : 0);
+    updatePutIncrease(positionIncrease ? positionIncrease : 0);
+    updatePutBagger(bagger ? bagger : 0);
+  }, [putStrike, buyAtPrice, optionsPremium, contractsNo, moneyIn])
 
   return (
       <div className='module'>
         <div className='header'>
-          <h2>🚀 Calls</h2>
+          <h2>🐻 Puts</h2>
         </div>
         <div className='inputs'>
           <div className='row'>
-            <h3>Strike Buy Price</h3>
-            <input type="text" placeholder='Strike Price of Share' value={callStrike} onChange={(e)=>{updateCallStrike(e.target.value)}} />
+            <h3>Strike Sell Price</h3>
+            <input type="text" placeholder='Strike Price of Share' value={putStrike} onChange={(e)=>{updatePutStrike(e.target.value)}} />
           </div>
           <div className='row'>
-            <h3>Sell Price</h3>
-            <input type="text" placeholder='Price @ Exercise to Sell' value={sellAtPrice} onChange={(e)=>{updateSellAtPrice(e.target.value)}} />
+            <h3>Price @ Buy</h3>
+            <input type="text" placeholder='Buy Price for Exercise' value={buyAtPrice} onChange={(e)=>{updateBuyAtPrice(e.target.value)}} />
           </div>
           <div className='row'>
             <h3>Options Premium</h3>
@@ -115,12 +115,12 @@ function Calls() {
           </div>
         </div>
         <div className='result'>
-          <h4>🖨️: ${callProfit.toLocaleString()} </h4>
-          <h4>📈: {callIncrease.toFixed(2)}% (~{callBagger.toFixed(0)} 💰)</h4>
+          <h4>🖨️: ${putProfit.toLocaleString()} </h4>
+          <h4>📈: {putIncrease.toFixed(2)}% (~{putBagger.toFixed(0)} 💰)</h4>
           <h4>✋: {hands}</h4>
         </div>
       </div>
   );
 }
 
-export default Calls;
+export default Puts;
